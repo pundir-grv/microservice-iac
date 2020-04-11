@@ -1,0 +1,7 @@
+resource "aws_vpc" "itachi_vpc" {
+    cidr_block = var.cidr_block_vpc
+    instance_tenancy = "default"
+    tags = {
+        Name = "itachi_vpc"
+    }
+}
