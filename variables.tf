@@ -45,3 +45,17 @@ variable "db_name" {
 variable "public_access" {
   default = true
 }
+
+variable "function_name" {
+  default = "kong_rds_init_setup"
+}
+
+variable "s3_file_key" {
+  default = "rds_lambda_setup.zip"
+}
+
+variable "bucket_name" {
+  default = "itachi-lambda-functions"
+}
+
+
