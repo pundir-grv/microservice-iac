@@ -3,7 +3,7 @@ resource "aws_subnet" "itachi_public_subnet_a" {
   cidr_block = var.cidr_block_public_a
   availability_zone = var.availability_zone_a
   tags = {
-      Name = "itachi_public_subnet_b"
+      Name = "itachi_public_subnet_a"
   }
 }
 
@@ -12,6 +12,15 @@ resource "aws_subnet" "itachi_public_subnet_b" {
   cidr_block = var.cidr_block_public_b
   availability_zone = var.availability_zone_b
   tags = {
-      Name = "itachi_public_subnet_a"
+      Name = "itachi_public_subnet_b"
+  }
+}
+
+resource "aws_subnet" "itachi_public_subnet_c" {
+  vpc_id = aws_vpc.itachi_vpc.id
+  cidr_block = var.cidr_block_public_c
+  availability_zone = var.availability_zone_a
+  tags = {
+      Name = "itachi_public_subnet_c"
   }
 }

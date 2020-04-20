@@ -13,7 +13,13 @@ resource "aws_iam_role_policy" "lambda_rds_access_policy" {
                 "events:*",
                 "lambda:*",
                 "logs:*",
-                "s3:*"
+                "s3:*",
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeVpcs"
             ],
             "Resource": "*"
         },

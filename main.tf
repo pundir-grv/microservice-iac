@@ -9,6 +9,7 @@ module "vpc" {
   cidr_block_vpc            = var.cidr_block_vpc
   cidr_block_public_a       = var.cidr_block_public_a
   cidr_block_public_b       = var.cidr_block_public_b
+  cidr_block_public_c       = var.cidr_block_public_c
   availability_zone_a       = var.availability_zone_a
   availability_zone_b       = var.availability_zone_b
 }
@@ -51,6 +52,27 @@ module "lambda" {
   s3_object_version   = module.s3.s3_object_version
   function_name       = var.function_name
   role                = module.iam.iam_role_lambda
+  timeout             = 40
+  memory_size         = 512
+  security_group_ids  = module.vpc.security_group_id
+  subnet_ids          = [module.vpc.subnet_id_a,module.vpc.subnet_id_b]
   handler             = "kong_setup.main"
 }
 
+module "ec2" {
+  source              = "./modules/ec2"
+  availability_zone_a = var.availability_zone_a
+  security_groups     = [module.vpc.security_group_id]
+  subnet_id_c         = module.vpc.subnet_id_c 
+  instance_name       = "Jump Host"
+  key_name            = "deployer-key"
+}
+
+module "ec2_private_host" {
+  source              = "./modules/ec2"
+  availability_zone_a = var.availability_zone_a
+  security_groups     = [module.vpc.security_group_id]
+  subnet_id_c         = module.vpc.subnet_id_a 
+  instance_name       = "Private Host"
+  key_name            = "deployer-key2"
+}

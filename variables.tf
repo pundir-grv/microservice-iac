@@ -10,6 +10,10 @@ variable "cidr_block_public_b" {
   default = "192.168.2.0/24"
 }
 
+variable "cidr_block_public_c" {
+  default = "192.168.4.0/24"
+}
+
 variable "availability_zone_a" {
   default = "ap-south-1a"
 }
@@ -34,7 +38,7 @@ variable "engine_version" {
 
   default = {
     mysql    = "5.7.21"
-    postgres = "9.6.8"
+    postgres = "9.6.11"
   }
 }
 
@@ -43,7 +47,7 @@ variable "db_name" {
 }
 
 variable "public_access" {
-  default = true
+  default = false
 }
 
 variable "function_name" {
