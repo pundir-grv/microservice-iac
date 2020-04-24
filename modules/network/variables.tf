@@ -14,6 +14,10 @@ variable "cidr_block_public_c" {
   description = "cidr block for public subnet"
 }
 
+variable "cidr_block_public_d" {
+  description = "cidr block for public subnet"
+}
+
 
 variable "availability_zone_a" {
   description = "availability zone for subnets"

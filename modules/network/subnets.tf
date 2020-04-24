@@ -24,3 +24,12 @@ resource "aws_subnet" "itachi_public_subnet_c" {
       Name = "itachi_public_subnet_c"
   }
 }
+
+resource "aws_subnet" "itachi_public_subnet_d" {
+  vpc_id = aws_vpc.itachi_vpc.id
+  cidr_block = var.cidr_block_public_d
+  availability_zone = var.availability_zone_b
+  tags = {
+      Name = "itachi_public_subnet_c"
+  }
+}

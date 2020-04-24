@@ -54,3 +54,11 @@ resource "aws_route_table_association" "public_c_rt_association" {
     aws_subnet.itachi_public_subnet_c
   ]
 }
+
+resource "aws_route_table_association" "public_d_rt_association" {
+  subnet_id = aws_subnet.itachi_public_subnet_d.id
+  route_table_id = aws_route_table.itachi_public_route_table3.id
+  depends_on = [
+    aws_subnet.itachi_public_subnet_d
+  ]
+}

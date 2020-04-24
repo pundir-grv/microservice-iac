@@ -14,6 +14,10 @@ variable "cidr_block_public_c" {
   default = "192.168.4.0/24"
 }
 
+variable "cidr_block_public_d" {
+  default = "192.168.5.0/24"
+}
+
 variable "availability_zone_a" {
   default = "ap-south-1a"
 }
@@ -62,4 +66,10 @@ variable "bucket_name" {
   default = "itachi-lambda-functions"
 }
 
+variable "redis_grp_id" {
+  default = "kong-itachi-redis-test"
+}
 
+variable "cluster_name" {
+  default = "itachi-kong"
+}
