@@ -73,3 +73,22 @@ variable "redis_grp_id" {
 variable "cluster_name" {
   default = "itachi-kong"
 }
+variable "kong_port_http" {
+  default = 8080
+}
+variable "kong_port_https" {
+  default = 8443
+}
+variable "kong_port_admin" {
+  default = 8112
+}
+variable "kong_dash_port_http" {
+  default = 8081
+}
+variable "kong_dash_app_name" {
+  default = "itach-kong-dashboard"
+}
+
+
+
+

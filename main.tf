@@ -92,3 +92,24 @@ module "kong_alb" {
   vpc_id              = module.vpc.vpc_id
   cluster_name        = var.cluster_name
 }
+
+module "kong" {
+  source                        = "./modules/ecs-fargate"
+  cluster_name                  = var.cluster_name
+  iam_role                      = module.iam.iam_role_ecs
+  execution_role_arn            = module.iam.iam_role_ecs_task
+  container_image               = "${data.aws_ecr_repository.itach_kong_repo.repository_url}:latest"
+  kong_port_http                = var.kong_port_http
+  kong_port_https               = var.kong_port_https
+  kong_port_admin               = var.kong_port_admin
+  db_username                   = module.secrets.rds_creds["username"]
+  db_password                   = module.secrets.rds_creds["password"]
+  db_engine                     = var.engine
+  db_host                       = module.rds.db_instance_address
+  kong_dash_app_name            = var.kong_dash_app_name
+  kong_admin_api_service_url    = "http://${module.kong_alb.alb_dns_name}:${var.kong_port_admin}"
+  kong_dash_port_http           = var.kong_dash_port_http
+  target_group_id               = module.kong_alb.target_group_id
+  subnet_ids                    = [module.vpc.subnet_id_private_a,module.vpc.subnet_id_private_b]
+  security_group_ids            = [module.vpc.security_group_id]
+}
